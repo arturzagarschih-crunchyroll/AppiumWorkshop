@@ -1,17 +1,28 @@
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.openqa.selenium.By
-import org.openqa.selenium.chrome.ChromeDriver
-import org.openqa.selenium.chrome.ChromeOptions
 import org.openqa.selenium.interactions.Actions
+import org.openqa.selenium.remote.DesiredCapabilities
+import org.openqa.selenium.remote.RemoteWebDriver
 import org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated
 import org.openqa.selenium.support.ui.FluentWait
+import java.net.URL
 import java.time.Duration
 
 class MigrationTest {
-    private val driver = ChromeDriver(
-        ChromeOptions()
-            .setExperimentalOption("mobileEmulation", mapOf("deviceName" to "Pixel 5"))
+    private val driver = RemoteWebDriver(
+        URL("http://127.0.0.1:4444"),
+        DesiredCapabilities(
+            mapOf(
+                "browserName" to "chrome",
+                "browserVersion" to "111.0",
+                "goog:chromeOptions" to mapOf(
+                    "mobileEmulation" to mapOf(
+                        "deviceName" to "Pixel 5"
+                    )
+                )
+            )
+        )
     )
 
     @AfterEach
