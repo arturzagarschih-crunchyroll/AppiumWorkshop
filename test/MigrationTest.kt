@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.openqa.selenium.By
 import org.openqa.selenium.interactions.Actions
@@ -10,12 +11,17 @@ import java.net.URL
 import java.time.Duration
 
 class MigrationTest {
+    private val username = System.getenv("LT_USERNAME")
+    private val accessToken = System.getenv("LT_ACCESS_KEY")
     private val driver = RemoteWebDriver(
-        URL("http://127.0.0.1:4444"),
+        URL("https://$username:$accessToken@hub.lambdatest.com/wd/hub"),
         DesiredCapabilities(
             mapOf(
-                "browserName" to "chrome",
-                "browserVersion" to "111.0",
+                "lt:options" to mapOf(
+                    "browserName" to "chrome",
+                    "browserVersion" to "111.0",
+                    "w3c" to true
+                ),
                 "goog:chromeOptions" to mapOf(
                     "mobileEmulation" to mapOf(
                         "deviceName" to "Pixel 5"
@@ -24,6 +30,12 @@ class MigrationTest {
             )
         )
     )
+
+    @BeforeEach
+    fun setUp() {
+        val suffix = if (driver.capabilities.getCapability("browserName") !== null) "" else "app"
+        println("https://${suffix}automation.lambdatest.com/test?testID=${driver.sessionId}")
+    }
 
     @AfterEach
     fun tearDown() {
