@@ -1,10 +1,10 @@
+import io.appium.java_client.android.AndroidDriver
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.openqa.selenium.By
 import org.openqa.selenium.interactions.Actions
 import org.openqa.selenium.remote.DesiredCapabilities
-import org.openqa.selenium.remote.RemoteWebDriver
 import org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated
 import org.openqa.selenium.support.ui.FluentWait
 import java.net.URL
@@ -13,7 +13,7 @@ import java.time.Duration
 class MigrationTest {
     private val username = System.getenv("LT_USERNAME")
     private val accessToken = System.getenv("LT_ACCESS_KEY")
-    private val driver = RemoteWebDriver(
+    private val driver = AndroidDriver(
         URL("https://$username:$accessToken@mobile-hub.lambdatest.com/wd/hub"),
         DesiredCapabilities(
             mapOf(
@@ -40,7 +40,8 @@ class MigrationTest {
 
     @Test
     fun playground() {
-        // TODO: your code
+        val contexts = driver.contextHandles
+        println(contexts)
     }
 
     @Test

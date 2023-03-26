@@ -15,7 +15,7 @@
         <kotlin.version>1.8.0</kotlin.version>
         <junit.jupiter.version>5.9.2</junit.jupiter.version>
         <maven.surefire.version>3.0.0</maven.surefire.version>
-        <selenium.version>4.8.2</selenium.version>
+        <appium.version>8.3.0</appium.version>
 
         <!-- Settings -->
         <kotlin.code.style>official</kotlin.code.style>
@@ -69,9 +69,9 @@
             <version>${junit.jupiter.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>${selenium.version}</version>
+            <groupId>io.appium</groupId>
+            <artifactId>java-client</artifactId>
+            <version>${appium.version}</version>
         </dependency>
     </dependencies>
 
