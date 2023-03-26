@@ -2,13 +2,17 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.openqa.selenium.By
 import org.openqa.selenium.chrome.ChromeDriver
+import org.openqa.selenium.chrome.ChromeOptions
 import org.openqa.selenium.interactions.Actions
 import org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated
 import org.openqa.selenium.support.ui.FluentWait
 import java.time.Duration
 
 class MigrationTest {
-    private val driver = ChromeDriver()
+    private val driver = ChromeDriver(
+        ChromeOptions()
+            .setExperimentalOption("mobileEmulation", mapOf("deviceName" to "Pixel 5"))
+    )
 
     @AfterEach
     fun tearDown() {
