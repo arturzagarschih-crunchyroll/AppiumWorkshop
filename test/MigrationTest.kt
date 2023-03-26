@@ -14,18 +14,14 @@ class MigrationTest {
     private val username = System.getenv("LT_USERNAME")
     private val accessToken = System.getenv("LT_ACCESS_KEY")
     private val driver = RemoteWebDriver(
-        URL("https://$username:$accessToken@hub.lambdatest.com/wd/hub"),
+        URL("https://$username:$accessToken@mobile-hub.lambdatest.com/wd/hub"),
         DesiredCapabilities(
             mapOf(
                 "lt:options" to mapOf(
-                    "browserName" to "chrome",
-                    "browserVersion" to "111.0",
+                    "platformName" to "android",
+                    "deviceName" to "Pixel 5",
+                    "isRealMobile" to true,
                     "w3c" to true
-                ),
-                "goog:chromeOptions" to mapOf(
-                    "mobileEmulation" to mapOf(
-                        "deviceName" to "Pixel 5"
-                    )
                 )
             )
         )
